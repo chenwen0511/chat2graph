@@ -1,6 +1,15 @@
 import asyncio
+import os
+import sys
 from typing import Any, Dict, List, Optional
 from uuid import uuid4
+
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+print(project_root)
+
+
+sys.path.insert(0, project_root)
+
 
 from app.core.model.job import SubJob
 from app.core.model.task import Task

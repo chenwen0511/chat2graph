@@ -1,3 +1,10 @@
+import os
+import sys
+
+# Add project root directory to Python path
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../.."))
+sys.path.insert(0, project_root)
+
 from app.core.common.system_env import SystemEnv
 from app.core.common.type import ReasonerType, WorkflowPlatformType
 from app.core.model.graph_db_config import Neo4jDbConfig
@@ -494,7 +501,7 @@ def main():
     mas.expert(
         name="Q&A Expert",
         description="""他是一位通用问答与信息检索专家。
-        **当任务是请求关于某个概念、技术、产品（例如，“介绍一下 Graph”）的一般性信息、定义、解释、比较或总结时，他是首选且通常是唯一的专家，** 尤其是当问题不涉及操作或查询一个具体的、已存在数据的图数据库实例时。
+        **当任务是请求关于某个概念、技术、产品（例如，"介绍一下 Graph"）的一般性信息、定义、解释、比较或总结时，他是首选且通常是唯一的专家，** 尤其是当问题不涉及操作或查询一个具体的、已存在数据的图数据库实例时。
         他的任务是：1. 理解问题。 2. 从通用知识库、互联网或提供的文档中检索最相关的信息。 3. 综合信息并生成一个全面、清晰的回答。
         他会输出对问题的直接回答。**他完全不与任何项目特定的图数据库交互，不执行图查询或图算法，也不进行数据建模或导入。他专注于提供信息和解释，而非操作数据。** (类似于 RAG)""",  # noqa: E501
     ).workflow((retrieving_operator, summarizing_operator), platform_type=workflow_platform).build()

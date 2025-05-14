@@ -1,8 +1,14 @@
 import os
+import sys
 
 from flask import Flask, send_from_directory
 from flask_cors import CORS  # type: ignore
 import pyfiglet  # type: ignore
+
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
+print(project_root)
+
+sys.path.insert(0, project_root)
 
 from app.core.dal.init_db import init_db
 from app.core.sdk.agentic_service import AgenticService
